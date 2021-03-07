@@ -115,9 +115,10 @@ app.get('/vw/:user', (req, res)=> {
 
 // init server
 app.listen(1337, ()=> {
-    console.log('')
-    console.log(`${verde}AUTHOR:${negrito} Gab${r}`)
-    console.log(`${verde}GITHUB:${negrito} https://github.com/${negrito}gabhm${r}`)
+    console.clear()
+    console.log(`${verde}Tenplate:${negrito}${siteEscolido}${r}`)
+    console.log(`${verde}Author:${negrito} Gab${r}`)
+    console.log(`${verde}Github:${negrito} https://github.com/${negrito}gabhm${r}`)
     console.log(``)
     console.log(`${amarelo}WARNING ${negrito} TO ${vermelho}CLOSE${verde}${negrito} THE SERVER, TYPE: CTRL + C !!${r}`)
     most_link()
