@@ -1,13 +1,12 @@
 {
-  "name": "pishing_tool",
+  "name": "pishing-tool",
   "version": "1.0.0",
   "description": "",
-  "main": "listener.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "gab",
+  "author": "Gab",
   "license": "MIT",
   "dependencies": {
     "cli-table": "^0.3.5",
