@@ -18,10 +18,7 @@ info = new Table()
 // scripts
 const getAgent = require('./scripts/getAgent.js')
 const getIp = require('./scripts/getIp.js')
-const getLink = require('./scripts/getLink.js')
 
-
-getLink()
 // colors
 vermelho = '\033[31m'
 verde = '\033[32m'
@@ -58,8 +55,8 @@ app.use(bodyParser.urlencoded({extended : true}))
 app.use(bodyParser.json())
 
 // read link
-const logLink = require('./link.json')
-Info.link = logLink.link
+
+Info.link = fs.readFileSync("./link.txt", "utf8")
 
 
 
