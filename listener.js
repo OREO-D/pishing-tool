@@ -15,7 +15,7 @@ const app = express()
 me = new Table()
 info = new Table()
 
-// scripts
+// script
 const getAgent = require('./scripts/getAgent.js')
 const getIp = require('./scripts/getIp.js')
 
