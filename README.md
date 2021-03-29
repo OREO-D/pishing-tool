@@ -9,7 +9,7 @@
 [npm](https://www.npmjs.com/)
 
 ## Updates
-`Facebook Template` updated now !!
+`Google Template` updated now !!
 
 ## How to use
 1. clone the repository: `git clone https://github.com/gabhm/pishing-tool.git`
