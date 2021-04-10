@@ -1,0 +1,6 @@
+flask
+wget
+platform
+os
+threading
+json
