@@ -14,7 +14,7 @@
 2. rode o programa: `python3 calamav.py`
 
 ## Nota
- - _o Calamv exibira a pagina de pishing no seu localhost: 127.0.0.1:5000, o padrao flask. Caso queira mudar isso e deixar o pishing publico, use a ferramenta [ngrok](https://ngrok.com/) caso queira um link publico use: `ngrok http 5000`._
+ - _O Calamv exibira a pagina de pishing no seu localhost: 127.0.0.1:5000, o padrao flask. Caso queira mudar isso e deixar o pishing publico, use a ferramenta [ngrok](https://ngrok.com/) caso queira um link publico use: `ngrok http 5000`._
 
 ## Lisense
 **[MIT](https://github.com/gabhm/pishing-tool/blob/main/LICENSE)**
